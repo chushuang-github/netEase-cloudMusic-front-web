@@ -4,7 +4,7 @@ const theme = {
     secondary: ''
   },
   size: {},
-  // 样式混入，给 styled-components 定义的样式组件使用的
+  // 样式混入，给 styled-components 定义的样式组件使用的 (结合 styled-components 主题一起使用)
   // ${props => props.theme.mixin.wrapV1}，直接写在样式组件里面就ok了
   mixin: {
     wrapV1: `
