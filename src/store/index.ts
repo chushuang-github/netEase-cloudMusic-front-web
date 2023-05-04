@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 import counterReducer from './modules/counter'
+import recommendReducer from './modules/recommend'
 
 // 接口函数调用签名
 // export interface TypedUseSelectorHook<TState> {
@@ -14,7 +15,8 @@ import {
 
 const store = configureStore({
   reducer: {
-    counter: counterReducer
+    counter: counterReducer,
+    recommend: recommendReducer
   }
 })
 
