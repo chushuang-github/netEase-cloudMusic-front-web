@@ -71,6 +71,8 @@ export const TopBannerControl = styled.div`
   left: 0;
   right: 0;
   top: 50%;
+  height: 63px;
+  transform: translateY(-50%);
 
   .btn {
     position: absolute;
@@ -78,7 +80,6 @@ export const TopBannerControl = styled.div`
     height: 63px;
     background-image: url(${require('@/assets/img/banner_sprite.png')});
     background-color: transparent;
-    transform: translateY(-50%);
     cursor: pointer;
     &:hover {
       background-color: rgba(0, 0, 0, 0.1);

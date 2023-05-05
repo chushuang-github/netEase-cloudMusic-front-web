@@ -8,9 +8,12 @@ export function getTopBanner() {
 }
 
 // 热门推荐
-export function getHotRecommend() {
+export function getHotRecommend(limit = 8) {
   return hyRequest.get({
-    url: '/personalized'
+    url: '/personalized',
+    params: {
+      limit
+    }
   })
 }
 
