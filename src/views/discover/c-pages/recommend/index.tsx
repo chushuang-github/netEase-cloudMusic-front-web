@@ -8,6 +8,7 @@ import {
 } from '@/store/modules/recommend'
 import TopBanner from './c-cpns/top-banner'
 import TopRecommend from './c-cpns/hot-recommend'
+import TopRanking from './c-cpns/top-ranking'
 import NewAlbum from './c-cpns/new-album'
 import {
   RecommendWrapper,
@@ -37,6 +38,8 @@ const Recommend: React.FC<IProps> = () => {
           <TopRecommend />
           {/* 新碟上架 */}
           <NewAlbum />
+          {/* 榜单 */}
+          <TopRanking />
         </RecommendLeft>
         <RecommendRight></RecommendRight>
       </RecommendContent>

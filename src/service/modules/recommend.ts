@@ -29,6 +29,7 @@ export function getNewAlbum(offset = 0, limit = 10) {
 }
 
 // 榜单
+// 新歌榜id=3779629  原创榜id=2884035  飙升榜id=19723756  热歌榜id=3778678
 export function getPlayListDetail(id: number) {
   return hyRequest.get({
     url: '/playlist/detail',
