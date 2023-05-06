@@ -4,7 +4,7 @@ import { useAppDispatch } from '@/store'
 import {
   fetchBannerAction,
   fetchHotRecommendAction,
-  fetchNewAlbumAction
+  fetchDataAction
 } from '@/store/modules/recommend'
 import TopBanner from './c-cpns/top-banner'
 import TopRecommend from './c-cpns/hot-recommend'
@@ -25,7 +25,7 @@ const Recommend: React.FC<IProps> = () => {
   useEffect(() => {
     dispatch(fetchBannerAction())
     dispatch(fetchHotRecommendAction())
-    dispatch(fetchNewAlbumAction())
+    dispatch(fetchDataAction())
   }, [])
 
   return (

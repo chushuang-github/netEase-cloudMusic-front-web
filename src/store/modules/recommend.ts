@@ -20,12 +20,14 @@ export const fetchHotRecommendAction = createAsyncThunk(
   }
 )
 
-// 新碟上架 (结合reducers一起使用)
-export const fetchNewAlbumAction = createAsyncThunk(
-  'album',
-  async (payload, { dispatch }) => {
-    const res = await getNewAlbum()
-    dispatch(changeNewAlbumAction(res.albums))
+// 新碟上架/榜单 (多个请求一起发送)
+export const fetchDataAction = createAsyncThunk(
+  'fetchData',
+  (payload, { dispatch }) => {
+    // 新碟上架
+    getNewAlbum().then((res) => {
+      dispatch(changeNewAlbumAction(res.albums))
+    })
   }
 )
 
