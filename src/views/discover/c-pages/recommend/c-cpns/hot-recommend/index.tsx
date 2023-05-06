@@ -2,8 +2,8 @@ import React, { memo } from 'react'
 import type { ReactNode } from 'react'
 import { HotRecommendWrapper } from './style'
 import AreaHeaderV1 from '@/components/area-header-v1'
-import { useAppSelector, shallowEqualApp } from '@/store'
 import SongsItem from '@/components/songs-item'
+import { useAppSelector, shallowEqualApp } from '@/store'
 
 interface IProps {
   children?: ReactNode

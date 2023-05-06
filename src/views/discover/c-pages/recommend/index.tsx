@@ -3,10 +3,12 @@ import type { ReactNode } from 'react'
 import { useAppDispatch } from '@/store'
 import {
   fetchBannerAction,
-  fetchHotRecommendAction
+  fetchHotRecommendAction,
+  fetchNewAlbumAction
 } from '@/store/modules/recommend'
 import TopBanner from './c-cpns/top-banner'
 import TopRecommend from './c-cpns/hot-recommend'
+import NewAlbum from './c-cpns/new-album'
 import {
   RecommendWrapper,
   RecommendContent,
@@ -23,6 +25,7 @@ const Recommend: React.FC<IProps> = () => {
   useEffect(() => {
     dispatch(fetchBannerAction())
     dispatch(fetchHotRecommendAction())
+    dispatch(fetchNewAlbumAction())
   }, [])
 
   return (
@@ -30,7 +33,10 @@ const Recommend: React.FC<IProps> = () => {
       <TopBanner />
       <RecommendContent>
         <RecommendLeft>
+          {/* 热门推荐 */}
           <TopRecommend />
+          {/* 新碟上架 */}
+          <NewAlbum />
         </RecommendLeft>
         <RecommendRight></RecommendRight>
       </RecommendContent>
