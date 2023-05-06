@@ -14,7 +14,6 @@ const Recommend = lazy(() => import('@/views/discover/c-pages/recommend'))
 const Songs = lazy(() => import('@/views/discover/c-pages/songs'))
 
 const Mine = lazy(() => import('@/views/mine'))
-const Download = lazy(() => import('@/views/download'))
 const Focus = lazy(() => import('@/views/focus'))
 
 const routes: RouteObject[] = [
@@ -59,10 +58,6 @@ const routes: RouteObject[] = [
   {
     path: '/mine',
     element: <Mine />
-  },
-  {
-    path: '/download',
-    element: <Download />
   },
   {
     path: '/focus',
