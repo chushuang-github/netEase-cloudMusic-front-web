@@ -10,6 +10,9 @@ import TopBanner from './c-cpns/top-banner'
 import TopRecommend from './c-cpns/hot-recommend'
 import TopRanking from './c-cpns/top-ranking'
 import NewAlbum from './c-cpns/new-album'
+import UserLogin from './c-cpns/user-login'
+import SettleSinger from './c-cpns/settle-singer'
+import HotAnchor from './c-cpns/hot-anchor'
 import {
   RecommendWrapper,
   RecommendContent,
@@ -41,7 +44,14 @@ const Recommend: React.FC<IProps> = () => {
           {/* 榜单 */}
           <TopRanking />
         </RecommendLeft>
-        <RecommendRight></RecommendRight>
+        <RecommendRight>
+          {/* 用户登录 */}
+          <UserLogin />
+          {/* 入驻歌手 */}
+          <SettleSinger />
+          {/* 热门主播 */}
+          <HotAnchor />
+        </RecommendRight>
       </RecommendContent>
     </RecommendWrapper>
   )

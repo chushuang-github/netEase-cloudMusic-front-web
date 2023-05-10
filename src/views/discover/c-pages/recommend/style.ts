@@ -10,9 +10,9 @@ export const RecommendContent = styled.div`
   display: flex;
 `
 export const RecommendLeft = styled.div`
-  padding: 20px;
-  width: 729px;
+  padding: 20px 15px 20px 20px;
+  width: 699px;
 `
 export const RecommendRight = styled.div`
-  width: 250px;
+  width: 252px;
 `
