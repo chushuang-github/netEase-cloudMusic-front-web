@@ -3,7 +3,8 @@ import {
   getTopBanner,
   getHotRecommend,
   getNewAlbum,
-  getPlayListDetail
+  getPlayListDetail,
+  getArtistList
 } from '@/service/modules/recommend'
 
 // 轮播图 (结合extraReducers一起使用)
@@ -42,6 +43,11 @@ export const fetchDataAction = createAsyncThunk(
       const playlist = res.map((item) => item.playlist)
       dispatch(changeRankingsAction(playlist))
     })
+
+    // 热门歌手
+    getArtistList(5).then((res) => {
+      dispatch(changeSingersAction(res.artists))
+    })
   }
 )
 
@@ -50,12 +56,14 @@ interface IRecommendState {
   hotRecommends: any[]
   newAlbums: any[]
   rankings: any[]
+  singers: any[]
 }
 const initialState: IRecommendState = {
   banners: [],
   hotRecommends: [],
   newAlbums: [],
-  rankings: []
+  rankings: [],
+  singers: []
 }
 
 const recommendSlice = createSlice({
@@ -70,6 +78,9 @@ const recommendSlice = createSlice({
     },
     changeRankingsAction(state, { payload }) {
       state.rankings = payload
+    },
+    changeSingersAction(state, { payload }) {
+      state.singers = payload
     }
   },
   extraReducers: (builder) => {
@@ -79,6 +90,10 @@ const recommendSlice = createSlice({
   }
 })
 
-const { changeHotRecommendAction, changeNewAlbumAction, changeRankingsAction } =
-  recommendSlice.actions
+const {
+  changeHotRecommendAction,
+  changeNewAlbumAction,
+  changeRankingsAction,
+  changeSingersAction
+} = recommendSlice.actions
 export default recommendSlice.reducer

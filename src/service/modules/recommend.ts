@@ -38,3 +38,13 @@ export function getPlayListDetail(id: number) {
     }
   })
 }
+
+// 入驻歌手
+export function getArtistList(limit = 30) {
+  return hyRequest.get({
+    url: '/artist/list',
+    params: {
+      limit
+    }
+  })
+}
