@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 import counterReducer from './modules/counter'
 import recommendReducer from './modules/recommend'
+import playerReducer from './modules/player'
 
 // 接口函数调用签名
 // export interface TypedUseSelectorHook<TState> {
@@ -16,7 +17,8 @@ import {
 const store = configureStore({
   reducer: {
     counter: counterReducer,
-    recommend: recommendReducer
+    recommend: recommendReducer,
+    player: playerReducer
   }
 })
 
