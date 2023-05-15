@@ -6,8 +6,9 @@ import {
   BarPlayInfo,
   BarOperator
 } from './style'
-import { Slider } from 'antd'
-import { useAppSelector, shallowEqualApp } from '@/store'
+import { Slider, message } from 'antd'
+import { useAppSelector, useAppDispatch, shallowEqualApp } from '@/store'
+import { changeLyricIndexAction } from '@/store/modules/player'
 import { getImageSize } from '@/utils/format'
 import { formatTime, getSongPlayUrl } from '@/utils/handle-player'
 
@@ -23,9 +24,12 @@ const AppPlayerBar: React.FC<IProps> = () => {
   const [isSliding, setIsSliding] = useState<boolean>(false)
   const audioRef = useRef<HTMLAudioElement>(null)
 
-  const { currentSong } = useAppSelector(
+  const dispatch = useAppDispatch()
+  const { currentSong, lyrics, lyricIndex } = useAppSelector(
     (state) => ({
-      currentSong: state.player.currentSong
+      currentSong: state.player.currentSong,
+      lyrics: state.player.lyrics,
+      lyricIndex: state.player.lyricIndex
     }),
     shallowEqualApp
   )
@@ -33,16 +37,16 @@ const AppPlayerBar: React.FC<IProps> = () => {
   useEffect(() => {
     // 1. 播放音乐
     audioRef.current!.src = getSongPlayUrl(currentSong.id)
-    audioRef.current
-      ?.play()
-      .then(() => {
-        console.log('歌曲播放成功')
-        setIsPlaying(true)
-      })
-      .catch(() => {
-        setIsPlaying(false)
-        console.log('歌曲播放失败')
-      })
+    // audioRef.current
+    //   ?.play()
+    //   .then(() => {
+    //     console.log('歌曲播放成功')
+    //     setIsPlaying(true)
+    //   })
+    //   .catch(() => {
+    //     setIsPlaying(false)
+    //     console.log('歌曲播放失败')
+    //   })
 
     // 2. 获取音乐总时长
     setDuration(currentSong.dt)
@@ -69,6 +73,28 @@ const AppPlayerBar: React.FC<IProps> = () => {
       setProgress(progress)
       setCurrentTime(currentTime)
     }
+
+    // 3. 歌词匹配
+    let index = lyrics.length - 1
+    for (let i = 0; i < lyrics.length; i++) {
+      const lyric = lyrics[i]
+      if (lyric.time > currentTime) {
+        index = i - 1
+        break
+      }
+    }
+
+    // 4. 匹配上歌词索引
+    if (lyricIndex === index || index === -1) return
+    dispatch(changeLyricIndexAction(index))
+
+    // 5. 展示歌词
+    message.open({
+      content: lyrics[index].text,
+      // key相同,就会去卸载上一次的提示
+      key: 'lyric',
+      duration: 0
+    })
   }
 
   // 进度条变化歌曲播放到对应位置
@@ -114,7 +140,7 @@ const AppPlayerBar: React.FC<IProps> = () => {
           <div className="info">
             <div className="song">
               <span>{currentSong.name}</span>
-              <span className="singer-name">{currentSong?.ar[0]?.name}</span>
+              <span className="singer-name">{currentSong?.ar?.[0]?.name}</span>
             </div>
             <div className="progress">
               <Slider
