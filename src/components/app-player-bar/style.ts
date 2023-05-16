@@ -45,6 +45,7 @@ export const BarControl = styled.div<IBarControl>`
     width: 36px;
     height: 36px;
     margin: 0 8px;
+    cursor: pointer;
     background-position: 0 ${(props) => (props.isPlaying ? '-165px' : '-204px')};
   }
 `
@@ -170,6 +171,7 @@ export const BarOperator = styled.div<IBarOperator>`
 
     /* styled-components里面也可使用switch语句进行判断 */
     .loop {
+      cursor: pointer;
       background-position: ${(props) => {
         switch (props.playMode) {
           case 1:

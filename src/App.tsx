@@ -11,7 +11,7 @@ function App() {
   // 获取一首喜欢的歌曲
   const dispatch = useAppDispatch()
   useEffect(() => {
-    dispatch(fetchCurrentSongAction(167876))
+    dispatch(fetchCurrentSongAction(2046990697))
   }, [])
 
   return (

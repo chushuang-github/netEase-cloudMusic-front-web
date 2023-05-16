@@ -2,6 +2,8 @@ import React, { memo } from 'react'
 import type { ReactNode } from 'react'
 import { TopRankingItemWrapper } from './style'
 import { getImageSize } from '@/utils/format'
+import { useAppDispatch } from '@/store'
+import { fetchCurrentSongAction } from '@/store/modules/player'
 
 interface IProps {
   children?: ReactNode
@@ -11,6 +13,11 @@ interface IProps {
 const TopRankingItem: React.FC<IProps> = (props) => {
   const { itemData } = props
   const { tracks = [] } = itemData
+
+  const dispatch = useAppDispatch()
+  const handlePlayMusic = (id: number) => {
+    dispatch(fetchCurrentSongAction(id))
+  }
 
   return (
     <TopRankingItemWrapper>
@@ -35,7 +42,10 @@ const TopRankingItem: React.FC<IProps> = (props) => {
               <div className="info">
                 <div className="name">{item.name}</div>
                 <div className="operator">
-                  <button className="sprite_02 btn play"></button>
+                  <button
+                    className="sprite_02 btn play"
+                    onClick={() => handlePlayMusic(item.id)}
+                  ></button>
                   <button className="sprite_icon2 btn add"></button>
                   <button className="sprite_02 btn favor"></button>
                 </div>

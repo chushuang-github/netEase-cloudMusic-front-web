@@ -23,9 +23,9 @@ const store = configureStore({
 })
 
 // redux 根状态的类型
-type IRootState = ReturnType<typeof store.getState>
+export type IRootState = ReturnType<typeof store.getState>
 // dispatch函数的类型
-type AppDispatch = typeof store.dispatch
+export type AppDispatch = typeof store.dispatch
 
 // 老师怎么知道的：在官网里面看见的
 // redux官网：https://cn.redux.js.org/tutorials/typescript-quick-start
